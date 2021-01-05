@@ -4,7 +4,7 @@
 </div>
 
 
-<mat-horizontal-stepper #stepper>
+<mat-horizontal-stepper #stepper [@expand]>
   <mat-step label = "Rating">
     <p>This is your service's rating : {{value}}</p>
     <mat-slider
@@ -31,7 +31,6 @@
       </div>
   </mat-step>
   <mat-step label = "Done">
-    <p>Button to save your comment</p>
     <section>
       <button mat-raised-button color="primary" [disabled]="commentFormControl.invalid" (click)="onSubmit() && stepper.reset()">Save</button>
     </section>
@@ -39,23 +38,31 @@
     <section>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
       </div>
     </section>
   </mat-step>
 </mat-horizontal-stepper>
 
-<div fxLayout="row"
-fxLayout.lt-md="column"
-fxLayoutGap="10px"
->
-  <div *ngFor="let feedb of feedbacksT" class="conttt" fxFlex=30%>
-    <h3>Date : {{feedb.createdAt | date}}</h3>
-    <h3>Author : {{feedb.user?.firstname}} {{feedb.user?.lastname}}</h3>
-    <hr>
-    <p>Rating: {{feedb.rating}} / 5</p>
-    <p>Comment: {{feedb.comment}}</p>
-  </div>
-</div>
+<hr>
+<div fxLayout="column" fxLayoutGap="10px">
 
+  <div class="c">
+    <h1>The feedbacks gives ideas on the effency of our web application</h1>
+    <h3>You can check our recents feedbacks on our services bellow :</h3>
+  </div>
+
+  <div fxLayout="row"
+  fxLayoutGap="10px" 
+  >
+    <div *ngFor="let feedb of feedbacksT" class="conttt" [@expand]>
+      <h3>Date : {{feedb.createdAt | date}}</h3>
+      <h3>Author : {{feedb.user?.firstname}} {{feedb.user?.lastname}}</h3>
+      <hr>
+      <p>Rating: {{feedb.rating}} / 5</p>
+      <p>Comment: {{feedb.comment}}</p>
+    </div>
+  </div>
+
+  
+</div>
 

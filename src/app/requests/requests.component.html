@@ -9,7 +9,7 @@ fxGap="40%">
       <h4>Make sure you fulfill it correctly , so people may help you without any problem</h4>
     </div>
     <div>
-      <form novalidate [formGroup]="RequestForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="RequestForm" (ngSubmit)="onSubmit()"  [@expand]>
         <div fxLayoutGap="2%">
           <mat-form-field appearance="fill">
             <mat-label>Type ?</mat-label>
@@ -57,7 +57,7 @@ fxGap="40%">
     <div *ngIf="UrgentRequests">
       <mat-list>
         <div mat-subheader>Urgent requests</div>
-        <mat-list-item *ngFor="let urgentreq of UrgentRequests">
+        <mat-list-item *ngFor="let urgentreq of UrgentRequests" [@expand]>
           <mat-icon mat-list-icon>update</mat-icon>
           <div mat-line>{{urgentreq.user?.firstname}} {{urgentreq.user?.lastname}}</div>
           <div mat-line> {{urgentreq?.dueDate | date}} </div>
@@ -72,7 +72,7 @@ fxGap="40%">
     <div *ngIf="NormalRequests">
       <mat-list>
         <div mat-subheader>Normal requests</div>
-        <mat-list-item *ngFor="let urgentreq of NormalRequests">
+        <mat-list-item *ngFor="let urgentreq of NormalRequests" [@expand]>
           <mat-icon mat-list-icon>update</mat-icon>
           <div mat-line>{{urgentreq.user?.firstname}} {{urgentreq.user?.lastname}}</div>
           <div mat-line> {{urgentreq?.dueDate | date}} </div>
@@ -91,7 +91,7 @@ fxGap="40%">
       <div fxLayout ="row"
         fxLayout.sm="column"
         fxLayout.xs="column">
-        <mat-card *ngFor="let request of NormalRequests" fxFlex ="30%">
+        <mat-card *ngFor="let request of NormalRequests" fxFlex ="30%" [@expand]>
           <div>
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -126,7 +126,7 @@ fxGap="40%">
     <div fxLayout ="row"
       fxLayout.sm="column"
       fxLayout.xs="column">
-      <mat-card *ngFor="let request of UrgentRequests" fxFlex ="30%">
+      <mat-card *ngFor="let request of UrgentRequests" fxFlex ="30%" [@expand]>
         <div>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>

@@ -1,7 +1,7 @@
 <div fxLayout = "row"
 fxLayout.lt-sm="column"
 fxLayoutGap="50px">
-  <div fxFlex="30%">
+  <div fxFlex="30%" class ="divv"> 
     <h1>Your requests</h1>
     <h3>You can check here, the state of your requests</h3>
     <h3>Any requests whose due date is expired, will be automaticaly deleted</h3>
@@ -19,7 +19,7 @@ fxLayoutGap="50px">
       fxLayoutGap="20px"
       >
 <div fxLayoutAlign="start center">
-<mat-card *ngFor="let request of Myrequests">
+<mat-card *ngFor="let request of Myrequests" [@expand]>
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Family Situation : {{request.familySituation}}</mat-card-title>

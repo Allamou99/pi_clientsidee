@@ -6,12 +6,21 @@ import {AuthService} from '../services/auth.service';
 import { MatIconRegistry } from '@angular/material';
 import {Router} from '@angular/router';
 import {UsersService} from '../services/users.service';
+import { flyInOut, expand } from '../animations';
 
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.scss']
+  styleUrls: ['./requests.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class RequestsComponent implements OnInit {
   NormalRequests : any

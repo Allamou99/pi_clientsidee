@@ -5,23 +5,25 @@
 </mat-toolbar>
 
 <form novalidate [formGroup]="SignupForm" (ngSubmit)="onSubmit()">
-<div fxLayout ="column">
-  <mat-form-field>
-    <input matInput formControlName="username" placeholder="Username" type="text" required>
-    <mat-error *ngIf="SignupForm.get('username').hasError('required') && SignupForm.get('username').touched ">Username is required</mat-error>
-  </mat-form-field>
- 
-  <mat-form-field>
-    <input matInput formControlName="password" placeholder="password" type="password" required>
-    <mat-error *ngIf="SignupForm.get('password').hasError('required') && SignupForm.get('password').touched ">Password is required</mat-error>
-  </mat-form-field>
-</div>
+<div fxLayout ="row" fxLayout.lt-sm="column" fxLayoutGap="5px">
+    <mat-form-field fxFlex>
+      <input matInput formControlName="username" placeholder="Username" type="text" required>
+      <mat-error *ngIf="SignupForm.get('username').hasError('required') && SignupForm.get('username').touched ">Username is required</mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input matInput formControlName="password" placeholder="Password" type="password" required>
+      <mat-error *ngIf="SignupForm.get('password').hasError('required') && SignupForm.get('password').touched ">Password is required</mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
+</div>
+<div fxLayout="column">
+  <mat-form-field fxFlex>
     <input matInput formControlName="Confirmpassword" placeholder="Confirm Password" type="password" required>
     <mat-error *ngIf="SignupForm.get('Confirmpassword').hasError('required') && SignupForm.get('Confirmpassword').touched ">
       Please confirm your password</mat-error>
   </mat-form-field>
+</div>
+  
 <div fxLayout="column">
   <mat-form-field>
       <input matInput formControlName="mail" placeholder="Email" type="text" required>
@@ -31,27 +33,27 @@
           Invalid email </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput formControlName="telNumber" placeholder="Phnne Number" type="tel" required>
+    <input matInput formControlName="telNumber" placeholder="Phone Number" type="tel" required>
     <mat-error *ngIf="SignupForm.get('telNumber').hasError('required') && SignupForm.get('mail').touched ">
       Phone Number is required</mat-error>
     <mat-error *ngIf="SignupForm.get('telNumber').hasError('pattern')">
         Your phone number is invalid </mat-error>
-</mat-form-field>
-
-
-  <mat-form-field>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayout-lt.sm="column" fxLayoutGap="5px">
+  <mat-form-field fxFlex>
     <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
     <mat-error *ngIf="SignupForm.get('firstname').hasError('required') && SignupForm.get('firstname').touched ">
       First Name is required</mat-error>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field fxFlex>
     <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
     <mat-error *ngIf="SignupForm.get('lastname').hasError('required') && SignupForm.get('lastname').touched ">
       Last Name is required</mat-error>
   </mat-form-field>
 </div>
-<div fxLayout ="column">
+<div fxLayout ="column" fxLayoutGap="10px">
   <mat-slide-toggle formControlName="inNeed" >Are you in need ?</mat-slide-toggle>
 
   <button type="submit" [disabled]="SignupForm.invalid || ConfirmationWrong()" mat-raised-button color="primary">Submit</button>

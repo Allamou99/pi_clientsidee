@@ -49,7 +49,5 @@ export class RequestService {
   CancelHelp(id:any) : Observable<any>{
     return this.http.delete<any>(baseURL + 'requests/' + id + '/helps')
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));
-
-
   }
 }

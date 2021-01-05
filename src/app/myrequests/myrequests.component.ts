@@ -3,12 +3,17 @@ import {RequestService} from '../services/request.service';
 import {request} from '../datastructure/request';
 import {UsersService} from '../services/users.service';
 import {user} from '../datastructure/user';
+import { flyInOut, expand } from '../animations';
 
 
 @Component({
   selector: 'app-myrequests',
   templateUrl: './myrequests.component.html',
-  styleUrls: ['./myrequests.component.scss']
+  styleUrls: ['./myrequests.component.scss'],
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class MyrequestsComponent implements OnInit {
   NowComment:Boolean = false;

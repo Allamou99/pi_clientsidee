@@ -1,11 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {FeedbackService} from '../services/feedback.service';
-import {feedback} from '../datastructure/feedback'
+import {feedback} from '../datastructure/feedback';
+import { flyInOut, expand } from '../animations';
+
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class FeedbackComponent implements OnInit {
   rating:number = 5;
@@ -33,7 +43,7 @@ constructor(private feedbackService : FeedbackService) { }
       .subscribe(feedbacks => {this.feedbacksT = feedbacks ; console.log(this.feedbacksT)})
       this.rating = 5;
       this.comment="";
-      return true
+      return true;
     }
   }
 }
