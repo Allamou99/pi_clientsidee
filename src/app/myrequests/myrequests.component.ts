@@ -4,7 +4,8 @@ import {request} from '../datastructure/request';
 import {UsersService} from '../services/users.service';
 import {user} from '../datastructure/user';
 import { flyInOut, expand } from '../animations';
-
+import {MatDialog} from '@angular/material/dialog';
+import {UpdatereqComponent} from '../updatereq/updatereq.component';
 
 @Component({
   selector: 'app-myrequests',
@@ -19,8 +20,11 @@ export class MyrequestsComponent implements OnInit {
   NowComment:Boolean = false;
   CurrentUser: user;
   Myrequests:request[];
+
   constructor(private requestService: RequestService,
-  private userService : UsersService) { }
+  private userService : UsersService,
+  private dialog:MatDialog) { }
+
   ngOnInit(){
    this.requestService.getMyRequests()
    .subscribe(myrequests=>this.Myrequests = myrequests);
@@ -36,5 +40,16 @@ export class MyrequestsComponent implements OnInit {
       .subscribe(deleted=>this.Myrequests = deleted);
       this.NowComment = true;
   }
-  
+
+  saveReq(req:request){
+    this.requestService.UpdatedRequest = req;
+    const Loginref = this.dialog.open(UpdatereqComponent, {width: '900px', height: '500px'});
+    Loginref.afterClosed()
+        .subscribe(result => {
+          console.log(result);
+        });
+  }
 }
+
+/*this.requestService.updateRequest(this.requestService.UpdatedRequest)
+          .subscribe(requests =>{ this.Myrequests = requests ; console.log(requests)})*/

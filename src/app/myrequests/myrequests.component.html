@@ -32,6 +32,7 @@ fxLayoutGap="50px">
           </p>
         </mat-card-content>
         <mat-card-actions>
+            <button mat-raised-button color="primary" (click) ="saveReq(request)">EDIT REQUEST</button>
             <button mat-raised-button color="primary" (click) = "deleteRequest(request._id)">DELETE REQUEST</button>
             <button mat-raised-button color="primary" (click) = "deleteRequest(request._id)" *ngIf="request.loading">In process,got it?</button>
             <mat-progress-bar *ngIf="request.loading" mode="indeterminate"></mat-progress-bar>

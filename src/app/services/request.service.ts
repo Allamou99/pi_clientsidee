@@ -11,6 +11,8 @@ import { ProcessHTTPMsgService } from './process-httpmsg-service.service';
 })
 export class RequestService {
 
+  UpdatedRequest : any;
+
   constructor(private http:HttpClient, private httperrorHandler:ProcessHTTPMsgService) { }
 
   getRequests(): Observable<request[]>{
@@ -40,12 +42,17 @@ export class RequestService {
     return this.http.put<any>(baseURL + 'requests/'+id , {loading:true})
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));
   }
+  updateRequest(Req : request) : Observable<any>{
+    return this.http.put<any>(baseURL + 'requests/'+Req._id , {'subject':Req.subject, 'familySituation':Req.familySituation ,
+  'loading':Req.loading , 'urgent':Req.loading , 'dueDate':Req.dueDate , 'type':Req.type})
+    .pipe(catchError(error => this.httperrorHandler.handleError(error)));
+  }
   
   deleteRequest(id:any) : Observable<any>{
     return this.http.delete(baseURL + 'requests/' +id)
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));
   }
-
+    
   CancelHelp(id:any) : Observable<any>{
     return this.http.delete<any>(baseURL + 'requests/' + id + '/helps')
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));

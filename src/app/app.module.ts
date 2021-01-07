@@ -38,6 +38,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { UpdatereqComponent } from './updatereq/updatereq.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     HeaderComponent,
     FeedbackComponent,
     RequestsComponent,
-    MyrequestsComponent
+    MyrequestsComponent,
+    UpdatereqComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   ],
   entryComponents: [
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    UpdatereqComponent
   ],
   providers: [
     AuthService,
