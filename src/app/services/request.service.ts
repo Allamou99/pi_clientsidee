@@ -44,7 +44,7 @@ export class RequestService {
   }
   updateRequest(Req : request) : Observable<any>{
     return this.http.put<any>(baseURL + 'requests/'+Req._id , {'subject':Req.subject, 'familySituation':Req.familySituation ,
-  'loading':Req.loading , 'urgent':Req.loading , 'dueDate':Req.dueDate , 'type':Req.type})
+  'loading':Req.loading , 'urgent':Req.urgent , 'dueDate':Req.dueDate , 'type':Req.type})
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));
   }
   

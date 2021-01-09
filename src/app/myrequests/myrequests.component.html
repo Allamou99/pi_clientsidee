@@ -7,7 +7,7 @@ fxLayoutGap="50px">
     <h3>Any requests whose due date is expired, will be automaticaly deleted</h3>
   </div>
   <hr>
-  <div fxFlex = "70%" class = "flex-spacer">
+  <div fxFlex = "70%" class = "container">
     <h1>Your profil : </h1>
     <h3>Full name : {{CurrentUser.firstname}} {{CurrentUser.lastname}}.</h3>
     <h3 *ngIf="CurrentUser.inNeed">In need.</h3>
@@ -24,6 +24,7 @@ fxLayoutGap="50px">
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Family Situation : {{request.familySituation}}</mat-card-title>
     <mat-card-subtitle>Due date : {{request.dueDate | date}}</mat-card-subtitle>
+    <mat-card-subtitle>Type : {{request.type}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/ONwZGjz4oxlLUpqBPu6nx8tl.png">
         <mat-card-content>

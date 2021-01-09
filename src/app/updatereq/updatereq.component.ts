@@ -38,7 +38,7 @@ export class UpdatereqComponent implements OnInit {
     dueDate: ['',Validators.required],
     })
   }
-
+//[disabled]="RequestForm.invalid"
   onSubmit(){
     /*this.UpdatedRequest = {
         type:this.RequestForm.controls['type'].value,
@@ -58,6 +58,7 @@ export class UpdatereqComponent implements OnInit {
 
 
         this.reqService.UpdatedRequest = this.UpdatedRequest;
+        console.log(this.reqService.UpdatedRequest);
         this.reqService.updateRequest(this.reqService.UpdatedRequest)
           .subscribe(requests =>{ this.matref.close(true);});
   }

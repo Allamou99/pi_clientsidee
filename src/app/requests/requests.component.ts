@@ -7,7 +7,8 @@ import { MatIconRegistry } from '@angular/material';
 import {Router} from '@angular/router';
 import {UsersService} from '../services/users.service';
 import { flyInOut, expand } from '../animations';
-
+import {MatDialog} from '@angular/material/dialog';
+import {LocationComponent} from '../location/location.component';
 
 @Component({
   selector: 'app-requests',
@@ -35,7 +36,9 @@ export class RequestsComponent implements OnInit {
   Authenticated:boolean;
   bool:boolean;
 
-  constructor(private reqService:RequestService,private router:Router,
+  constructor(private reqService:RequestService,
+    private router:Router,
+    private dialog:MatDialog,
     private fb:FormBuilder,
     private authser:AuthService,
     private userService: UsersService) { }
@@ -116,13 +119,13 @@ export class RequestsComponent implements OnInit {
     this.NormalRequests = upRequests.filter(element=>!element.urgent)} )
   }
 
-  Test(request:any){
-    if(request.helps[0]._id == this.currentUser){
-      console.log(true);
-    }
-    else{
-      console.log(false);
-    }
+  openMap(){
+    const LocationRef = this.dialog.open(LocationComponent, {width: '630px', height: '630px'});
+    LocationRef.afterClosed()
+        .subscribe(result => {
+          console.log(result);
+        });
   }
+  
 }
 //*ngIf= "MineorNot(request.helps[0]._id)"
