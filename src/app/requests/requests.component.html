@@ -106,9 +106,9 @@ fxGap="40%">
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button>
-            <button mat-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button>
-            <button mat-button  (click)="openMap()">LOCATION</button>
+            <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
+            <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
+            <a><button mat-stroked-button  (click)="openMap()">LOCATION</button></a>
             
             <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
             <mat-spinner *ngIf="request.loading"></mat-spinner>
@@ -142,8 +142,9 @@ fxGap="40%">
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="requestTaken(request._id)">HELP</button>
-          <button mat-button (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button>
+          <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
+            <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
+            <a><button mat-stroked-button  (click)="openMap()">LOCATION</button></a>
           
           <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
           <mat-spinner *ngIf="request.loading"></mat-spinner>
