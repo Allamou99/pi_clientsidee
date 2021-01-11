@@ -1,13 +1,19 @@
 <div *ngIf="inNeed" class ="maindiv"
 fxLayout="row"
 fxLayout.lt-md="column"
-fxGap="40%">
+fxLayoutGap="10px">
   <div fxLayout="column"
-  fxFlex = "70%">
+  fxFlex = "70%"
+  fxLayoutGap="10px">
     <div>
       <h1>Fulfill your request</h1>
       <h4>Make sure you fulfill it correctly , so people may help you without any problem</h4>
     </div>
+    <div fxLayout="column" >
+      <h3>The helper may need your location to provide his help. Check out your current position</h3>
+      <a><button mat-stroked-button (click) ="Map()" >Current location.</button></a>
+    </div>
+    <hr>
     <div>
       <form novalidate [formGroup]="RequestForm" (ngSubmit)="onSubmit()"  [@expand]>
         <div fxLayoutGap="2%">
@@ -108,7 +114,7 @@ fxGap="40%">
           <mat-card-actions>
             <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
             <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
-            <a><button mat-stroked-button  (click)="openMap()">LOCATION</button></a>
+            <a><button mat-stroked-button  (click)="openMap(request)">LOCATION</button></a>
             
             <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
             <mat-spinner *ngIf="request.loading"></mat-spinner>
@@ -144,7 +150,7 @@ fxGap="40%">
         <mat-card-actions>
           <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
             <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
-            <a><button mat-stroked-button  (click)="openMap()">LOCATION</button></a>
+            <a><button mat-stroked-button  (click)="openMap(request)">LOCATION</button></a>
           
           <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
           <mat-spinner *ngIf="request.loading"></mat-spinner>

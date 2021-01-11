@@ -1,4 +1,4 @@
-import {user} from './user';
+import {user,location} from './user';
 
 export interface request {
     _id:string,
@@ -11,4 +11,5 @@ export interface request {
     urgent:boolean,
     user:user,
     helps:user[]
+    location:location
 }

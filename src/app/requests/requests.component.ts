@@ -9,6 +9,8 @@ import {UsersService} from '../services/users.service';
 import { flyInOut, expand } from '../animations';
 import {MatDialog} from '@angular/material/dialog';
 import {LocationComponent} from '../location/location.component';
+import {location} from '../datastructure/user';
+
 
 @Component({
   selector: 'app-requests',
@@ -35,6 +37,8 @@ export class RequestsComponent implements OnInit {
   reqTaken:boolean = false;
   Authenticated:boolean;
   bool:boolean;
+  Location : location = {'lat': undefined, 'long' : undefined};
+  
 
   constructor(private reqService:RequestService,
     private router:Router,
@@ -43,7 +47,7 @@ export class RequestsComponent implements OnInit {
     private authser:AuthService,
     private userService: UsersService) { }
     
-
+  
   ngOnInit() {
     this.userService.getCurrentUser()
     .subscribe(curruser => this.currentUser = curruser._id);
@@ -55,6 +59,15 @@ export class RequestsComponent implements OnInit {
     this.createForm();
     this.inNeed = this.authser.IsAuthenticatedInNeed;
     this.Authenticated = this.authser.isAuthenticated;
+    
+    if(this.inNeed){
+      navigator.geolocation.getCurrentPosition((position)=>{
+        this.Location.lat = position.coords.latitude;
+        this.Location.long = position.coords.longitude;
+        this.reqService.CurrentLocation = this.Location;
+      console.log(this.Location)})
+    }
+    
     
   }
   
@@ -79,7 +92,8 @@ export class RequestsComponent implements OnInit {
         loading:this.RequestForm.controls['loading'].value,
         reqResponded:this.RequestForm.controls['reqResponded'].value,
         urgent:this.RequestForm.controls['urgent'].value,
-        dueDate:this.RequestForm.controls['dueDate'].value}
+        dueDate:this.RequestForm.controls['dueDate'].value,
+        location:this.Location}
     this.reqService.postRequest(this.Request)
     .subscribe(requests => {this.UrgentRequests = requests.filter(element=>element.urgent);
       this.NormalRequests = requests.filter(element=>!element.urgent);});
@@ -119,11 +133,15 @@ export class RequestsComponent implements OnInit {
     this.NormalRequests = upRequests.filter(element=>!element.urgent)} )
   }
 
-  openMap(){
+  openMap(request:any){
+    this.reqService.CurrentLocation = request.location;
+    this.Map();
+  }
+  Map(){
     const LocationRef = this.dialog.open(LocationComponent, {width: '630px', height: '630px'});
     LocationRef.afterClosed()
         .subscribe(result => {
-          console.log(result);
+          console.log('It is closed ');
         });
   }
   

@@ -12,7 +12,7 @@ import { ProcessHTTPMsgService } from './process-httpmsg-service.service';
 export class RequestService {
 
   UpdatedRequest : any;
-
+  CurrentLocation : any;
   constructor(private http:HttpClient, private httperrorHandler:ProcessHTTPMsgService) { }
 
   getRequests(): Observable<request[]>{
@@ -34,7 +34,7 @@ export class RequestService {
   }
   postRequest(request:any): Observable<any> {
     return this.http.post<request>(baseURL + 'requests', {'type':request.type, 'familySituation':request.familySituation, 'subject':request.subject,
-    'loading':request.loading,'urgent':request.urgent,'reqResponded':request.reqResponded,'dueDate':request.dueDate})
+    'loading':request.loading,'urgent':request.urgent,'reqResponded':request.reqResponded,'dueDate':request.dueDate,'location':request.location})
     .pipe(catchError(this.httperrorHandler.handleError))
   }
 
@@ -57,4 +57,6 @@ export class RequestService {
     return this.http.delete<any>(baseURL + 'requests/' + id + '/helps')
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));
   }
+
+
 }

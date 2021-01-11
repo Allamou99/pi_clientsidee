@@ -7,3 +7,9 @@ export interface user{
     telNumber:string,
     mail:string,
 }
+
+
+export interface location{
+    lat:any;
+    long:any;
+}
