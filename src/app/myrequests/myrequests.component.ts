@@ -43,7 +43,7 @@ export class MyrequestsComponent implements OnInit {
 
   saveReq(req:request){
     this.requestService.UpdatedRequest = req;
-    const Loginref = this.dialog.open(UpdatereqComponent, {width: '900px', height: '500px'});
+    const Loginref = this.dialog.open(UpdatereqComponent, {width: '900px', height: '670px'});
     Loginref.afterClosed()
         .subscribe(result => {
           console.log(result);

@@ -10,10 +10,10 @@
   <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
   <a *ngIf="!username" mat-button (click)="openSignupForm()"><span class="fa fa-user-plus fa-lg"></span> Signup</a>
 
-  <button *ngIf="isAuthenticated && username" mat-button [matMenuTriggerFor]="request"><span class="fa fa-user-circle fa-lg"></span>{{username | uppercase}} </button>
+  <button *ngIf="isAuthenticated && username" mat-button matBadge="1" [matBadgeHidden]="hidden" matBadgeSize="medium" matBadgeColor="warn" (click)="toggleBadgeVisibility()" [matMenuTriggerFor]="request"><span class="fa fa-user-circle fa-lg"></span>{{username | uppercase}} </button>
     <mat-menu #request="matMenu" [overlapTrigger]="false">
     <button *ngIf="isInNeed && isAuthenticated" mat-menu-item routerLink="/feedback"><span class="fa fa-commenting fa-lg"></span>Give a feedback</button>
-    <button *ngIf="isInNeed && isAuthenticated" mat-menu-item routerLink="/myRequests"><span class="fa fa-database fa-lg"></span>Check out my requests</button>
+    <button *ngIf="isInNeed && isAuthenticated" mat-menu-item routerLink="/myRequests" ><span class="fa fa-database fa-lg"></span>Check out my requests</button>
     <button mat-menu-item (click)="logOut()"><span class="fa fa-sign-out fa-lg"></span>Log out</button>
     </mat-menu>
 

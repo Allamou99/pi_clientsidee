@@ -16,6 +16,11 @@ export class HeaderComponent implements OnInit {
   subscription:Subscription;
   isInNeed:boolean;
   isAuthenticated:boolean;
+  hidden = false;
+
+  toggleBadgeVisibility() {
+    this.hidden = true;
+  }
   constructor(private dialog:MatDialog,
     private authservice:AuthService,private router:Router) { }
 

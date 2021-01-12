@@ -153,7 +153,6 @@ export class RequestsComponent implements OnInit {
       return true;
     }
     else{
-      console.log(false);
       return false;
     }
   }

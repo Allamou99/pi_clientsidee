@@ -61,6 +61,9 @@ export class UpdatereqComponent implements OnInit {
         console.log(this.reqService.UpdatedRequest);
         this.reqService.updateRequest(this.reqService.UpdatedRequest)
           .subscribe(requests =>{ this.matref.close(true);});
+        this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
+        .subscribe(result=> console.log(result));
+        
   }
 
 }

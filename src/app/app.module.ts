@@ -41,6 +41,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { UpdatereqComponent } from './updatereq/updatereq.component';
 import { LocationComponent } from './location/location.component';
 import { FooterComponent } from './footer/footer.component';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 
 @NgModule({
@@ -55,7 +57,8 @@ import { FooterComponent } from './footer/footer.component';
     MyrequestsComponent,
     UpdatereqComponent,
     LocationComponent,
-    FooterComponent
+    FooterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,8 @@ import { FooterComponent } from './footer/footer.component';
     MatListModule,
     MatStepperModule,
     MatDividerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatBadgeModule
   ],
   entryComponents: [
     SignupComponent,
