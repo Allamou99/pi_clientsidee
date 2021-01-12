@@ -51,15 +51,17 @@
     <h3>You can check our recents feedbacks on our services bellow :</h3>
   </div>
 
-  <div fxLayout="row"
-  fxLayoutGap="10px" 
+  <div fxLayout="column"
+  fxLayoutGap="10px"
+  fxLayoutAlign="space-around center"
   >
     <div *ngFor="let feedb of feedbacksT" class="conttt" [@expand]>
+      
       <h3>Date : {{feedb.createdAt | date}}</h3>
       <h3>Author : {{feedb.user?.firstname}} {{feedb.user?.lastname}}</h3>
       <hr>
       <p>Rating: {{feedb.rating}} / 5</p>
-      <p>Comment: {{feedb.comment}}</p>
+      <p>Comment: {{feedb.comment}}</p>   
     </div>
   </div>
 

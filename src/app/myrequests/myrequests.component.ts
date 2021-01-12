@@ -53,3 +53,6 @@ export class MyrequestsComponent implements OnInit {
 
 /*this.requestService.updateRequest(this.requestService.UpdatedRequest)
           .subscribe(requests =>{ this.Myrequests = requests ; console.log(requests)})*/
+
+
+//<img mat-card-image src="https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/ONwZGjz4oxlLUpqBPu6nx8tl.png">

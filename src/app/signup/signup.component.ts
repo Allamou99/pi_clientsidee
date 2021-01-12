@@ -31,6 +31,7 @@ export class SignupComponent implements OnInit {
       password:['',Validators.required],
       Confirmpassword:['',Validators.required],
       inNeed: true,
+      isDoctor:false,
       firstname:['',Validators.required],
       lastname:['',Validators.required],
       mail:['',[Validators.required,Validators.email]],
@@ -38,10 +39,13 @@ export class SignupComponent implements OnInit {
     })
   }
   onSubmit(){
+    
     this.NewUser = this.SignupForm.value;
+    console.log(this.NewUser);
     this.autservice.signUp(this.NewUser)
     .subscribe(res=>{
       if(res.success){
+        alert('Inscription faite');
         this.Matref.close(true);
       }
       else{

@@ -2,19 +2,26 @@
 fxLayout="row"
 fxLayout.lt-md="column"
 fxLayoutGap="10px">
+
   <div fxLayout="column"
   fxFlex = "70%"
   fxLayoutGap="10px">
+  
     <div>
+      <mat-card>
       <h1>Fulfill your request</h1>
       <h4>Make sure you fulfill it correctly , so people may help you without any problem</h4>
+      </mat-card>
     </div>
     <div fxLayout="column" >
+      <mat-card>
       <h3>The helper may need your location to provide his help. Check out your current position</h3>
       <a><button mat-stroked-button (click) ="Map()" >Current location.</button></a>
+      </mat-card>
     </div>
     <hr>
     <div>
+      <mat-card>
       <form novalidate [formGroup]="RequestForm" (ngSubmit)="onSubmit()"  [@expand]>
         <div fxLayoutGap="2%">
           <mat-form-field appearance="fill">
@@ -57,6 +64,7 @@ fxLayoutGap="10px">
         <button type="submit" color = "primary" [disabled]="RequestForm.invalid" fxFlex="60%" mat-raised-button >Submit</button>
         </div>
       </form>
+    </mat-card>
     </div>
   </div>
   <div fxFlex="30%" fxLayout="column" class="con">
@@ -115,7 +123,9 @@ fxLayoutGap="10px">
             <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
             <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
             <a><button mat-stroked-button  (click)="openMap(request)">LOCATION</button></a>
-            
+            <div *ngIf="CurrentUser.isDoctor">
+              <h1>Knowing that you're a doctor, you may want to help this person with her <strong>medical</strong> request.</h1>
+              </div>
             <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
             <mat-spinner *ngIf="request.loading"></mat-spinner>
             <div *ngIf="request.loading && MineorNot(request)" class="con">
@@ -151,8 +161,11 @@ fxLayoutGap="10px">
           <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
             <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
             <a><button mat-stroked-button  (click)="openMap(request)">LOCATION</button></a>
-          
+            
           <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
+          <mat-card *ngIf="IsMedicalRequest(request.type)"><h1>This is a medical request, knowing that you're a doctor, we wanted to inform you that
+            this request might interest you.</h1></mat-card>
+          
           <mat-spinner *ngIf="request.loading"></mat-spinner>
           <div *ngIf="request.loading" class="con">
             <h1>You can contact this person , via his phone number or mail : </h1>
@@ -166,3 +179,8 @@ fxLayoutGap="10px">
     </mat-tab>
   </mat-tab-group>
 </div>
+
+
+
+
+

@@ -55,11 +55,11 @@
 </div>
 <div fxLayout ="column" fxLayoutGap="10px">
   <mat-slide-toggle formControlName="inNeed" >Are you in need ?</mat-slide-toggle>
-
+  <mat-slide-toggle formControlName="isDoctor" *ngIf="!this.SignupForm.controls['inNeed'].value">Are you a doctor ?</mat-slide-toggle>
   <button type="submit" [disabled]="SignupForm.invalid || ConfirmationWrong()" mat-raised-button color="primary">Submit</button>
 </div>
 </form>
 
-<div *ngIf="errMsg">
+<div *ngIf="errMsg" class ="errm">
   <h1>{{errMsg}}</h1>
 </div>

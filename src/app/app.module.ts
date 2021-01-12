@@ -40,6 +40,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { UpdatereqComponent } from './updatereq/updatereq.component';
 import { LocationComponent } from './location/location.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { LocationComponent } from './location/location.component';
     RequestsComponent,
     MyrequestsComponent,
     UpdatereqComponent,
-    LocationComponent
+    LocationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

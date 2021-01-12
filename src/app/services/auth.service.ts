@@ -90,7 +90,7 @@ export class AuthService {
   signUp(user:any) : Observable<any> {
     return this.http.post<any>(baseURL +'users/signup' , 
     {'username':user.username, 'password':user.password, 'firstname':user.firstname,'lastname':user.lastname,
-     'inNeed':user.inNeed,'mail':user.mail,'telNumber':user.telNumber})
+     'inNeed':user.inNeed,'mail':user.mail,'telNumber':user.telNumber, 'isDoctor':user.isDoctor})
     //.pipe(map(res=>{
       //console.log(res);
       //return{'succes':true , 'message' :'Registration done'};

@@ -50,7 +50,7 @@ export class RequestsComponent implements OnInit {
   
   ngOnInit() {
     this.userService.getCurrentUser()
-    .subscribe(curruser => this.currentUser = curruser._id);
+    .subscribe(curruser => this.currentUser = curruser);
 
     this.reqService.getRequests()
     .subscribe(requests => {this.UrgentRequests = requests.filter(element=>element.urgent);
@@ -98,6 +98,7 @@ export class RequestsComponent implements OnInit {
     .subscribe(requests => {this.UrgentRequests = requests.filter(element=>element.urgent);
       this.NormalRequests = requests.filter(element=>!element.urgent);});
     this.authser.checkJWTtoken();
+    this.RequestForm.reset();
   }
 
   Clik(id:any){
@@ -107,8 +108,7 @@ export class RequestsComponent implements OnInit {
   requestTaken(id:any){
     this.reqService.putRequest(id)
     .subscribe(requests => {this.UrgentRequests = requests.filter(el=>el.urgent);
-       this.NormalRequests = requests.filter(el=>!el.urgent) ; console.log(this.UrgentRequests);
-        console.log(this.NormalRequests)});
+       this.NormalRequests = requests.filter(el=>!el.urgent) ; });
   }
 
 
@@ -117,7 +117,7 @@ export class RequestsComponent implements OnInit {
         return false;
       }
       else{
-        if(request.helps[0]._id == this.currentUser){
+        if(request.helps[0]._id == this.currentUser._id){
           return true;
         }
         else{
@@ -135,6 +135,9 @@ export class RequestsComponent implements OnInit {
 
   openMap(request:any){
     this.reqService.CurrentLocation = request.location;
+    console.log(request.type);
+    console.log(this.currentUser.isDoctor);
+
     this.Map();
   }
   Map(){
@@ -144,6 +147,20 @@ export class RequestsComponent implements OnInit {
           console.log('It is closed ');
         });
   }
-  
+
+  IsMedicalRequest(type:any){
+    if(type == 'Medical' && this.currentUser.isDoctor){
+      return true;
+    }
+    else{
+      console.log(false);
+      return false;
+    }
+  }
 }
 //*ngIf= "MineorNot(request.helps[0]._id)"
+
+
+/*<div *ngIf="CurrentUser.isDoctor && IsMedicalRequest(request.type)">
+<h1>Knowing that you're a doctor, you may want to help this person with her <strong>medical</strong> request.</h1>
+</div>*/
