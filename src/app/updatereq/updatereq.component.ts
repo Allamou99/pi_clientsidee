@@ -68,7 +68,7 @@ export class UpdatereqComponent implements OnInit {
         };
         if(this.UpdatedRequest.loading){
           this.reqService.SendMail(this.MailObjects)
-          .subscribe(res=> {console.log(res); alert("An email has been sent to the helper of this request : Mr "+this.UpdatedRequest.helps[0].lastname) ;
+          .subscribe(res=> {console.log(res); alert("An email has been sent to the helper of this request : Mr ") ;
           if(res.sent){
             this.Wait = true;
             this.reqService.updateRequest(this.reqService.UpdatedRequest)
@@ -77,8 +77,15 @@ export class UpdatereqComponent implements OnInit {
             this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
                 .subscribe(result=> console.log(result));
         }
-        } 
-      }
+        }
+        }
+        else{
+          this.reqService.updateRequest(this.reqService.UpdatedRequest)
+                .subscribe(requests =>{ this.matref.close(true);});
+
+            this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
+                .subscribe(result=> console.log(result));
+        }
         
   }
 
