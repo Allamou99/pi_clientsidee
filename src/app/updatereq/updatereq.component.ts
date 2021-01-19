@@ -4,6 +4,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {RequestService} from '../services/request.service';
 
+
 @Component({
   selector: 'app-updatereq',
   templateUrl: './updatereq.component.html',
@@ -15,18 +16,18 @@ export class UpdatereqComponent implements OnInit {
     private matref: MatDialogRef<UpdatereqComponent>,
     private fb:FormBuilder,
     private reqService: RequestService) { }
-
+  
   RequestForm:FormGroup;
   Types : Array<String> = ["Money","Medical","Food/Grossery"];
   Request:Object;
   MailObjects : Object;
   UpdatedRequest : any = this.reqService.UpdatedRequest;
   Wait : boolean = true;
-
+  Loading : boolean = this.reqService.UpdatedRequest.loading;
+  Helper : string = this.reqService.UpdatedRequest.helps[0].lastname;
   ngOnInit() {
     this.createForm();
   }
-
   createForm(){
     this.RequestForm = this.fb.group({
     type:this.UpdatedRequest.type,
@@ -40,6 +41,7 @@ export class UpdatereqComponent implements OnInit {
   }
 //[disabled]="RequestForm.invalid"
   onSubmit(){
+    
     this.Wait = false;
     /*this.UpdatedRequest = {
         type:this.RequestForm.controls['type'].value,
@@ -58,17 +60,16 @@ export class UpdatereqComponent implements OnInit {
        this.UpdatedRequest.dueDate = this.RequestForm.controls['dueDate'].value;
 
         this.reqService.UpdatedRequest = this.UpdatedRequest;
-        console.log(this.reqService.UpdatedRequest);
-        
         this.MailObjects = {
             name:this.UpdatedRequest.user.lastname,
             email:this.UpdatedRequest.user.email,
             _id: this.UpdatedRequest._id,
         };
-        if(this.UpdatedRequest.loading){
+        console.log(this.reqService.UpdatedRequest);
+        if(this.Loading){
         this.reqService.SendMail(this.MailObjects)
         .subscribe(res=>{
-          alert("An email has been sent to the helper of this request : Mr ");
+          alert("An email has been sent to the helper of this request : Mr "+this.Helper);
           if(res.sent){
             this.Wait = true;
             this.reqService.updateRequest(this.reqService.UpdatedRequest)
@@ -86,9 +87,6 @@ export class UpdatereqComponent implements OnInit {
         }
   }
 }
-
-
-
 /*   this.reqService.SendMail(this.MailObjects)
           .subscribe(res=> {console.log(res); alert("An email has been sent to the helper of this request : Mr ");
           if(res.sent){

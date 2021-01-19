@@ -10,8 +10,7 @@ import { ProcessHTTPMsgService } from './process-httpmsg-service.service';
   providedIn: 'root'
 })
 export class RequestService {
-
-  UpdatedRequest : any;
+  UpdatedRequest:any;
   CurrentLocation : any;
   constructor(private http:HttpClient, private httperrorHandler:ProcessHTTPMsgService) { }
 
