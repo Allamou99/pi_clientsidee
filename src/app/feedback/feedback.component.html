@@ -15,8 +15,11 @@
     max="5"
     [(ngModel)]="rating"></mat-slider>
     <div class="mar">
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+      <button mat-mini-fab color="primary" matStepperNext>
+        <span class="material-icons">
+          skip_next
+          </span>
+      </button>
     </div>
   </mat-step>
   <mat-step label = "Comment">
@@ -26,18 +29,30 @@
       Please enter your comment
     </mat-error>
       <div class="mar">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-mini-fab color="primary" matStepperPrevious>
+          <span class="material-icons">
+            skip_previous
+            </span>
+        </button>
+        <button mat-mini-fab color="primary" matStepperNext>
+          <span class="material-icons">
+            skip_next
+            </span>
+        </button>
       </div>
   </mat-step>
   <mat-step label = "Done">
     <section>
-      <button mat-raised-button color="primary" [disabled]="commentFormControl.invalid" (click)="onSubmit() && stepper.reset()">Save</button>
+      <button mat-stroked-button color="primary" [disabled]="commentFormControl.invalid" (click)="onSubmit() && stepper.reset()"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save</button>
     </section>
     <mat-divider></mat-divider>
     <section>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-mini-fab color="primary" matStepperPrevious>
+          <span class="material-icons">
+            skip_previous
+            </span>
+        </button>
       </div>
     </section>
   </mat-step>

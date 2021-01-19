@@ -57,7 +57,6 @@ export class UpdatereqComponent implements OnInit {
        this.UpdatedRequest.subject = this.RequestForm.controls['subject'].value,
        this.UpdatedRequest.dueDate = this.RequestForm.controls['dueDate'].value;
 
-
         this.reqService.UpdatedRequest = this.UpdatedRequest;
         console.log(this.reqService.UpdatedRequest);
         
@@ -67,8 +66,31 @@ export class UpdatereqComponent implements OnInit {
             _id: this.UpdatedRequest._id,
         };
         if(this.UpdatedRequest.loading){
-          this.reqService.SendMail(this.MailObjects)
-          .subscribe(res=> {console.log(res); alert("An email has been sent to the helper of this request : Mr ") ;
+        this.reqService.SendMail(this.MailObjects)
+        .subscribe(res=>{
+          alert("An email has been sent to the helper of this request : Mr ");
+          if(res.sent){
+            this.Wait = true;
+            this.reqService.updateRequest(this.reqService.UpdatedRequest)
+                .subscribe(requests => this.matref.close(true));
+            this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
+                .subscribe(result=> console.log(result));
+          }
+        })
+        }
+        else{
+          this.reqService.updateRequest(this.reqService.UpdatedRequest)
+                .subscribe(requests => this.matref.close(true));
+            this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
+                .subscribe(result=> console.log(result));
+        }
+  }
+}
+
+
+
+/*   this.reqService.SendMail(this.MailObjects)
+          .subscribe(res=> {console.log(res); alert("An email has been sent to the helper of this request : Mr ");
           if(res.sent){
             this.Wait = true;
             this.reqService.updateRequest(this.reqService.UpdatedRequest)
@@ -77,16 +99,4 @@ export class UpdatereqComponent implements OnInit {
             this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
                 .subscribe(result=> console.log(result));
         }
-        }
-        }
-        else{
-          this.reqService.updateRequest(this.reqService.UpdatedRequest)
-                .subscribe(requests =>{ this.matref.close(true);});
-
-            this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
-                .subscribe(result=> console.log(result));
-        }
-        
-  }
-
-}
+        }*/

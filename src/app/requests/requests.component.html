@@ -16,7 +16,7 @@ fxLayoutGap="10px">
     <div fxLayout="column" >
       <mat-card>
       <h3>The helper may need your location to provide his help. Check out your current position</h3>
-      <a><button mat-stroked-button (click) ="Map()" >Current location.</button></a>
+      <a><button mat-stroked-button (click) ="Map()" ><i class="fa fa-map-marker" aria-hidden="true"></i>Current location.</button></a>
       </mat-card>
     </div>
     <hr>
@@ -120,9 +120,9 @@ fxLayoutGap="10px">
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
-            <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
-            <a><button mat-stroked-button  (click)="openMap(request)">LOCATION</button></a>
+            <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)"><i class="fa fa-handshake-o" aria-hidden="true"></i>HELP</button></a>
+            <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)"><i class="fa fa-eraser" aria-hidden="true"></i>CANCEL THE HELP</button></a>
+            <a><button mat-stroked-button  (click)="openMap(request)"><i class="fa fa-map-marker" aria-hidden="true"></i>LOCATION</button></a>
           
             <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
             <mat-card *ngIf="IsMedicalRequest(request.type)"><h1>This is a medical request, knowing that you're a doctor, we wanted to inform you that
@@ -158,9 +158,9 @@ fxLayoutGap="10px">
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)">HELP</button></a>
-            <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" >CANCEL THE HELP</button></a>
-            <a><button mat-stroked-button  (click)="openMap(request)">LOCATION</button></a>
+          <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)"><i class="fa fa-handshake-o" aria-hidden="true"></i>HELP</button></a>
+            <a><button mat-stroked-button *ngIf="MineorNot(request)" (click) = "CancelHelp(request._id)" ><i class="fa fa-eraser" aria-hidden="true"></i>CANCEL THE HELP</button></a>
+            <a><button mat-stroked-button  (click)="openMap(request)"><i class="fa fa-map-marker" aria-hidden="true"></i>LOCATION</button></a>
             
           <h3 *ngIf="request.loading">Request taken, but still need reception</h3>
           <mat-card *ngIf="IsMedicalRequest(request.type)"><h1>This is a medical request, knowing that you're a doctor, we wanted to inform you that

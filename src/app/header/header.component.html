@@ -1,10 +1,9 @@
 <mat-toolbar color="primary">
   <a mat-button routerLink="/welcome" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
-  <a mat-button routerLink="/aboutus" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
   <a mat-button routerLink="/feedback" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> FeedBack</a>
   <a mat-button *ngIf="!isInNeed && isAuthenticated" routerLink="/requests" routerLinkActive="active"><span class="fa fa-volume-control-phone fa-lg"></span> Check Requests</a>
 
-  <a><button *ngIf="isInNeed && isAuthenticated" mat-button routerLink="/requests" routerLinkActive="active">Post Request</button></a>
+  <a><button *ngIf="isInNeed && isAuthenticated" mat-button routerLink="/requests" routerLinkActive="active"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i>Post Request</button></a>
 
   <span class="flex-spacer"></span>
   <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
