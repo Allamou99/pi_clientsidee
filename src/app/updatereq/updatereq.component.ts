@@ -19,9 +19,9 @@ export class UpdatereqComponent implements OnInit {
   RequestForm:FormGroup;
   Types : Array<String> = ["Money","Medical","Food/Grossery"];
   Request:Object;
-
+  MailObjects : Object;
   UpdatedRequest : any = this.reqService.UpdatedRequest;
-  
+  Wait : boolean = true;
 
   ngOnInit() {
     this.createForm();
@@ -40,6 +40,7 @@ export class UpdatereqComponent implements OnInit {
   }
 //[disabled]="RequestForm.invalid"
   onSubmit(){
+    this.Wait = false;
     /*this.UpdatedRequest = {
         type:this.RequestForm.controls['type'].value,
         familySituation:this.RequestForm.controls['familySituation'].value,
@@ -59,10 +60,25 @@ export class UpdatereqComponent implements OnInit {
 
         this.reqService.UpdatedRequest = this.UpdatedRequest;
         console.log(this.reqService.UpdatedRequest);
-        this.reqService.updateRequest(this.reqService.UpdatedRequest)
-          .subscribe(requests =>{ this.matref.close(true);});
-        this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
-        .subscribe(result=> console.log(result));
+        
+        this.MailObjects = {
+            name:this.UpdatedRequest.user.lastname,
+            email:this.UpdatedRequest.user.email,
+            _id: this.UpdatedRequest._id,
+        };
+        if(this.UpdatedRequest.loading){
+          this.reqService.SendMail(this.MailObjects)
+          .subscribe(res=> {console.log(res); alert("An email has been sent to the helper of this request : Mr "+this.UpdatedRequest.helps[0].lastname) ;
+          if(res.sent){
+            this.Wait = true;
+            this.reqService.updateRequest(this.reqService.UpdatedRequest)
+                .subscribe(requests =>{ this.matref.close(true);});
+
+            this.reqService.CancelHelp(this.reqService.UpdatedRequest._id)
+                .subscribe(result=> console.log(result));
+        }
+        } 
+      }
         
   }
 

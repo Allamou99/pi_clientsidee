@@ -48,3 +48,8 @@
   <button type="submit" color = "primary" [disabled]="RequestForm.invalid" fxFlex="60%" mat-raised-button >Submit</button>
   </div>
 </form>
+
+<div *ngIf="!Wait" fxLayout = "column" fxLayoutAlign = "center center" fxLayoutGap="15px">
+  <h2>Sending the mail ...</h2>
+  <mat-spinner></mat-spinner>
+</div>

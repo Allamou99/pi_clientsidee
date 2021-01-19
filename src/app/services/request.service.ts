@@ -58,5 +58,10 @@ export class RequestService {
     .pipe(catchError(error => this.httperrorHandler.handleError(error)));
   }
 
+  SendMail(user:any) : Observable<any>{
+    return this.http.post<any>(baseURL + 'requests/SendMail' , user)
+    .pipe(catchError(error => this.httperrorHandler.handleError(error)));
+  }
+
 
 }
