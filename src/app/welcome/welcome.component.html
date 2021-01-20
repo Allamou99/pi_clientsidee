@@ -20,6 +20,61 @@ fxLayoutGap="10px">
     </div>
 </div>
 
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+    <div class="cardcontainer" fxFlex="50%">
+    <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title><span class="material-icons">
+            emoji_emotions
+            </span><h1>Helper side</h1></mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://image.freepik.com/free-vector/elderly-care-nursing-home-isometric-illustration-with-residents-meeting-dining-room-with-help-their-caretakers_1284-33010.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <div *ngIf="Helper">
+                <h1>What a helper is supposed to do ? </h1>
+                <h3>A helper is supposed to respond to people's requests. There are three types of requests : medical
+                    ,financial, and food/grosserie request . Depending on your capacities , you can take care of them (in case you're a doctor ,
+                    you can take deep care of people who have medical issues.)
+                </h3>
+                <h3>In order to provide your help, you may need to Sign In, otherwise, you can not check out , people's needs.</h3>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button  (click) ="HelperF()"><span class="material-icons">
+                screen_share
+                </span>Helper's role</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="cardcontainer" fxFlex="50%">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title><span class="material-icons">
+            emoji_people
+            </span><h1>In need side</h1></mat-card-title>         
+        </mat-card-header>
+        <img mat-card-image src="https://image.freepik.com/free-vector/elderly-care-nursing-home-isometric-illustration-with-residents-meeting-dining-room-with-help-their-caretakers_1284-33010.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <div *ngIf="InNeed">
+                <h1>How this website is supposed to help people in need ? </h1>
+                <h3>
+                    A person in need can post her request, there will be 3 types of possible requests : Money, Medical , Food/Grosseries. 
+                    The person in need will be notified if someone took her request , in the field "Check my request" (You can acces to it if you're logged in).
+                    As well as the Helper, a person in need needs to sign up , in order to use our service .
+                </h3>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button  (click) ="InNeedF()"><span class="material-icons">
+                screen_share
+                </span>In need's role</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</div>
+
 <div class ="container"
  fxLayout ="row"
  fxLayout.lt-md="column"

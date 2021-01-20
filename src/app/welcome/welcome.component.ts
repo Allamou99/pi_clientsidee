@@ -19,7 +19,15 @@ import { flyInOut, expand } from '../animations';
 export class WelcomeComponent implements OnInit {
 
   constructor() { }
-
+  Helper:boolean = false;
+  InNeed:boolean = false;
   ngOnInit() {
+  }
+
+  HelperF(){
+    this.Helper = !this.Helper;
+  }
+  InNeedF(){
+    this.InNeed = !this.InNeed;
   }
 }
