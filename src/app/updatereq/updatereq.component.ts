@@ -24,7 +24,7 @@ export class UpdatereqComponent implements OnInit {
   UpdatedRequest : any = this.reqService.UpdatedRequest;
   Wait : boolean = true;
   Loading : boolean = this.reqService.UpdatedRequest.loading;
-  Helper : string = this.reqService.UpdatedRequest.helps[0].lastname;
+  
   ngOnInit() {
     this.createForm();
   }
@@ -41,7 +41,6 @@ export class UpdatereqComponent implements OnInit {
   }
 //[disabled]="RequestForm.invalid"
   onSubmit(){
-    
     this.Wait = false;
     /*this.UpdatedRequest = {
         type:this.RequestForm.controls['type'].value,
@@ -69,7 +68,7 @@ export class UpdatereqComponent implements OnInit {
         if(this.Loading){
         this.reqService.SendMail(this.MailObjects)
         .subscribe(res=>{
-          alert("An email has been sent to the helper of this request : Mr "+this.Helper);
+          alert("An email has been sent to the helper of this request.");
           if(res.sent){
             this.Wait = true;
             this.reqService.updateRequest(this.reqService.UpdatedRequest)

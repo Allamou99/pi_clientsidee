@@ -32,14 +32,14 @@ export class HeaderComponent implements OnInit {
     this.subscription.unsubscribe();
   }
   openSignupForm(){
-    const SignupRef = this.dialog.open(SignupComponent, {width: '600px', height: '750px'});
+    const SignupRef = this.dialog.open(SignupComponent, {width: '600px', height: '600px'});
     SignupRef.afterClosed()
         .subscribe(result => {
           console.log(result);
         });
   }
   openLoginForm(){
-    const Loginref = this.dialog.open(LoginComponent, {width: '500px', height: '500px'});
+    const Loginref = this.dialog.open(LoginComponent, {width: '500px', height: '350px'});
     Loginref.afterClosed()
         .subscribe(result => {
           console.log(result);

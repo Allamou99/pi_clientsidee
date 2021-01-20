@@ -51,6 +51,12 @@ fxLayoutGap="10px">
             <mat-error *ngIf="RequestForm.get('subject').hasError('required') && RequestForm.get('subject').touched ">
               Fulfill this field, so people may help you.</mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="city" placeholder="Where do you live (mention only your city)?" type="text" required>
+            <mat-error *ngIf="RequestForm.get('city').hasError('required') && RequestForm.get('subject').touched ">
+              Your current city.</mat-error>
+          </mat-form-field>
+
         </div>
         <hr>
         <div>
@@ -89,7 +95,9 @@ fxLayoutGap="10px">
       <mat-list>
         <div mat-subheader>Normal requests</div>
         <mat-list-item *ngFor="let urgentreq of NormalRequests" [@expand]>
-          <mat-icon mat-list-icon>update</mat-icon>
+          <mat-icon mat-list-icon><span class="material-icons">
+            alarm_off
+            </span></mat-icon>
           <div mat-line>{{urgentreq.user?.firstname}} {{urgentreq.user?.lastname}}</div>
           <div mat-line> {{urgentreq?.dueDate | date}} </div>
           <hr>
@@ -114,12 +122,15 @@ fxLayoutGap="10px">
             <mat-card-title>Family situation : {{request.familySituation}} //   Type of request : {{request.type}}</mat-card-title>
             <mat-card-subtitle>{{request.user.firstname}} {{request.user.lastname}}</mat-card-subtitle>
             <mat-card-subtitle>Due date : {{request.dueDate | date}}</mat-card-subtitle>
+            <mat-card-subtitle>City : {{request.city}}</mat-card-subtitle>
+
+
           </mat-card-header>
           <img mat-card-image src="https://thumbs.dreamstime.com/b/d-man-helping-person-trap-cracked-ground-illustration-earth-human-character-white-people-53128391.jpg">
           <mat-card-content>
-            <p>
-              {{request.subject}}
-            </p>
+            <h2>
+              Need : {{request.subject}}
+            </h2>
           </mat-card-content>
           <mat-card-actions>
             <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)"><i class="fa fa-handshake-o" aria-hidden="true"></i>HELP</button></a>
@@ -154,12 +165,13 @@ fxLayoutGap="10px">
           <mat-card-title>Family situation : {{request.familySituation}} //   Type of request : {{request.type}}</mat-card-title>
           <mat-card-subtitle>{{request.user.firstname}} {{request.user.lastname}}</mat-card-subtitle>
           <mat-card-subtitle>Due date : {{request.dueDate | date}}</mat-card-subtitle>
+          <mat-card-subtitle>City : {{request.city}}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="https://thumbs.dreamstime.com/b/d-man-helping-person-trap-cracked-ground-illustration-earth-human-character-white-people-53128391.jpg">
         <mat-card-content>
-          <p>
-            {{request.subject}}
-          </p>
+          <h2>
+            Need : {{request.subject}}
+          </h2>
         </mat-card-content>
         <mat-card-actions>
           <a><button mat-stroked-button *ngIf="!request.loading" (click)="requestTaken(request._id)"><i class="fa fa-handshake-o" aria-hidden="true"></i>HELP</button></a>

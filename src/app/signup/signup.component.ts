@@ -45,8 +45,8 @@ export class SignupComponent implements OnInit {
     this.autservice.signUp(this.NewUser)
     .subscribe(res=>{
       if(res.success){
-        alert('Inscription faite');
         this.Matref.close(true);
+        alert('Sign up done successfully, you can log in now .');
       }
       else{
         this.errMsg = res.err.message;

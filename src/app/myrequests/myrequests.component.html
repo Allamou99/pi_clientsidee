@@ -15,10 +15,10 @@ fxLayoutGap="50px">
 </div>
 <hr>
 <div fxLayout.lt-sm="column"
-      fxLayout = "row"
+      fxLayout = "column"
       fxLayoutGap="20px"
       >
-<div fxLayoutAlign="start center">
+<div fxLayoutAlign="start center" fxLayout = "row" fxLayoutGap="20px">
 <mat-card *ngFor="let request of Myrequests" [@expand]>
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>

@@ -33,7 +33,8 @@ export class RequestService {
   }
   postRequest(request:any): Observable<any> {
     return this.http.post<request>(baseURL + 'requests', {'type':request.type, 'familySituation':request.familySituation, 'subject':request.subject,
-    'loading':request.loading,'urgent':request.urgent,'reqResponded':request.reqResponded,'dueDate':request.dueDate,'location':request.location})
+    'loading':request.loading,'urgent':request.urgent,'reqResponded':request.reqResponded,
+    'dueDate':request.dueDate,'location':request.location,'city':request.city})
     .pipe(catchError(this.httperrorHandler.handleError))
   }
 
